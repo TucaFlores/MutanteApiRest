@@ -11,7 +11,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
-/*
+
 @SpringBootTest(classes = MutanteApiApplication.class)
 @AutoConfigureMockMvc
 @TestPropertySource(
@@ -35,4 +35,3 @@ public class PersonaControllerIntegration {
 
     }
 }
-*/

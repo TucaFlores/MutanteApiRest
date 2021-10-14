@@ -43,7 +43,7 @@ public class PersonaController extends BaseControllerImpl<Persona, PersonaServic
             float cantidadMutantes = servicio.cantMutantes();
             float cantidadHumanos = servicio.cantHumanos();
             float promedio = cantidadMutantes /(cantidadMutantes + cantidadHumanos);
-            return ResponseEntity.status(HttpStatus.OK).body("{\"count_mutant_dna\": \""+ cantidadMutantes + "\" \", count_human_dna \": \""+ cantidadHumanos +"\" \", ratio\": \""+ promedio +"\"}");
+            return ResponseEntity.status(HttpStatus.OK).body("{\"count_mutant_dna\": \""+ cantidadMutantes + "\",\"count_human_dna\": \""+ cantidadHumanos +"\",\"ratio\": \""+ promedio +"\"}");
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error \": \""+ e.getMessage() +"\"}"));
         }

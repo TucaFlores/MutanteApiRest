@@ -13,7 +13,6 @@ import java.util.Arrays;
 
 
 @DataJpaTest
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 class PersonaRespositoryTest {
 
     @Autowired
@@ -27,6 +26,7 @@ class PersonaRespositoryTest {
         Persona persona = new Persona();
         persona.setNombre("Sebastian");
         persona.setAdn(Arrays.asList("AAAA","ATGC","AGCC","ATCG"));
+        persona.setMutante(true);
 
         float cantMutante = 1;
 
@@ -41,6 +41,7 @@ class PersonaRespositoryTest {
         Persona persona = new Persona();
         persona.setNombre("Sebastian");
         persona.setAdn(Arrays.asList("AGCT","CTGC","AGCC","ATCG"));
+        persona.setMutante(false);
 
         float cantHumano = 1;
 
