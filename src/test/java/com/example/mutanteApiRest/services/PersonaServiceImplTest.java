@@ -44,5 +44,17 @@ public class PersonaServiceImplTest {
 
         Assertions.assertEquals(cantHumano,personaService.cantMutantes());
     }
+    @Test
+    void savePersona() throws Exception{
+        Persona persona = new Persona();
+        persona.setNombre("Sebastian");
+        persona.setAdn(Arrays.asList("AGCTAGC","CTGCGCA","AGCCTAC","ATCGGCA"));
+
+        Mockito.when(personaRepository.save(persona)).thenReturn(persona);
+
+        Assertions.assertEquals(persona,personaService.save(persona));
+
+
+    }
 
 }

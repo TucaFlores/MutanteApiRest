@@ -22,10 +22,10 @@ class PersonaRespositoryTest {
     private PersonaRepository personaRepository;
 
     @Test
-    void testSearchCantMutante(){
+    void testCantMutante(){
         Persona persona = new Persona();
         persona.setNombre("Sebastian");
-        persona.setAdn(Arrays.asList("AAAA","ATGC","AGCC","ATCG"));
+        persona.setAdn(Arrays.asList("AAAAGCT","ATGCCGT","AGCCTGC","ATCGCGG"));
         persona.setMutante(true);
 
         float cantMutante = 1;
@@ -37,10 +37,10 @@ class PersonaRespositoryTest {
 
     }
     @Test
-    void testSearchCantHumano(){
+    void testCantHumano(){
         Persona persona = new Persona();
         persona.setNombre("Sebastian");
-        persona.setAdn(Arrays.asList("AGCT","CTGC","AGCC","ATCG"));
+        persona.setAdn(Arrays.asList("AGCTCGG","CTGCTGC","AGCCTTC","ATCGCGT"));
         persona.setMutante(false);
 
         float cantHumano = 1;
