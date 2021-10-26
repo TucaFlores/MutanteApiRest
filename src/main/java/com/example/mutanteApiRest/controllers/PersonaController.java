@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(path = "api/v1/personas")
+@RequestMapping(path = "api")
 public class PersonaController extends BaseControllerImpl<Persona, PersonaServiceImpl> {
 
     private Gson gson =new Gson();
