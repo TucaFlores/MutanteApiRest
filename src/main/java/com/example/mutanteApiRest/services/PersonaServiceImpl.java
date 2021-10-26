@@ -40,16 +40,6 @@ public class PersonaServiceImpl extends BaseServiceImpl<Persona, Long> implement
 
     public Persona save(Persona entity) throws Exception{
         try{
-            Matriz matriz = new Matriz();
-            Persona persona = new Persona();
-            matriz.setAdn(entity.getAdn().toArray(new String[entity.getAdn().size()]));
-            if(matriz.controlCarSize(matriz.getAdn())==false){
-                throw new Exception();
-            }
-            persona.setAdn(entity.getAdn());
-            persona.setNombre(entity.getNombre());
-            persona.setMutante(matriz.isMutant(matriz.getAdn()));
-
             personaRepository.save(persona);
             return persona;
         }catch(Exception e){
