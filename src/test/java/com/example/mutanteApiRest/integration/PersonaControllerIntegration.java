@@ -1,6 +1,7 @@
 package com.example.mutanteApiRest.integration;
 
 import com.example.mutanteApiRest.MutanteApiApplication;
+import com.example.mutanteApiRest.algoritmo.Matriz;
 import com.example.mutanteApiRest.entities.Persona;
 import com.example.mutanteApiRest.repositories.PersonaRepository;
 import org.junit.jupiter.api.Test;
@@ -14,13 +15,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 
 @SpringBootTest(classes = MutanteApiApplication.class)
 @AutoConfigureMockMvc
 @TestPropertySource(
-        locations = "classpath:application-testing.properties"
+        locations = "classpath:application.properties"
 )
 public class PersonaControllerIntegration {
 
@@ -33,10 +35,29 @@ public class PersonaControllerIntegration {
     @Test
     void testStats() throws Exception{
         Persona persona = new Persona();
-        persona.setNombre("Sebastian");
+        Matriz mutante = new Matriz();
         persona.setAdn(Arrays.asList("ATGC", "AAAA", "AGGC", "ATGG"));
+        mutante.setAdn(new String[]{"ATGC", "AAAA", "AGGC", "ATGG"});
+        mutante.matriz(mutante.getAdn());
+        if(mutante.controlSize(mutante.getAdn())){
+            System.out.println("Paso primera");
+        } if(mutante.caracteres(mutante.getMatrizADN())) {
+            persona.setMutante(mutante.isMutant(mutante.getAdn()));
+        }
 
         personaRepository.save(persona);
+
+        Persona persona1 = new Persona();
+        Matriz mutante1 = new Matriz();
+
+        persona1.setAdn(Arrays.asList("TTGC", "AGAA", "AGGC", "ATGG"));
+        mutante1.setAdn(new String[]{"TTGC", "AGAA", "AGGC", "ATGG"});
+        mutante1.matriz(mutante1.getAdn());
+        if(mutante1.controlSize(mutante1.getAdn()) && mutante1.caracteres(mutante1.getMatrizADN())) {
+            persona1.setMutante(mutante1.isMutant(mutante1.getAdn()));
+        }
+
+        personaRepository.save(persona1);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/personas/stats")
                 .contentType(MediaType.APPLICATION_JSON))

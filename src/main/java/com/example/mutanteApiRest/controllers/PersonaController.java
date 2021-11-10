@@ -3,7 +3,6 @@ package com.example.mutanteApiRest.controllers;
 import com.example.mutanteApiRest.algoritmo.Matriz;
 import com.example.mutanteApiRest.entities.Persona;
 import com.example.mutanteApiRest.entities.parse.JsonDna;
-import com.example.mutanteApiRest.services.PersonaService;
 import com.example.mutanteApiRest.services.PersonaServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,20 +19,30 @@ public class PersonaController extends BaseControllerImpl<Persona, PersonaServic
     private Gson gson =new Gson();
 
     @PostMapping("/mutant")
-    public ResponseEntity<?> saveMutant(@RequestBody Persona entity){
+    public ResponseEntity<?> saveMutant(@RequestBody Object entry){
         try {
-//            Matriz mutante = new Matriz(); //Creo la matriz para después ejecutarlo en el algoritmo
-//            Persona entity = new Persona();
-//            JsonDna param = gson.fromJson(entry.toString(), JsonDna.class);
-//            if(mutante.controlCarSize(param.getDna())){
-//             return  ResponseEntity.status(HttpStatus.FORBIDDEN).body("{\"error\":\"No cumple con las condiciones\"}");
-//            }
-//            entity.setAdn(Arrays.asList(param.getDna()));
-//            mutante.setAdn(param.getDna()); //Le asigno la matriz al algoritmo
-//            entity.setMutante(mutante.isMutant(mutante.getAdn()));//Llamo a la función para saber si es mutante o no
-            return ResponseEntity.status(HttpStatus.OK).body(servicio.save(entity));
+            Matriz mutante = new Matriz(); //Creo la matriz para después ejecutarlo en el algoritmo
+            Persona entity = new Persona();
+            JsonDna param = gson.fromJson(entry.toString(), JsonDna.class);
+            boolean isMutante;
+            if(!mutante.controlSize(param.getDna())){
+             return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Matriz no cuadrada \"}");
+            }
+            mutante.matriz(param.getDna());
+            if(!mutante.caracteres(mutante.getMatrizADN())){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error de Caracteres \"}");
+            }
+            entity.setAdn(Arrays.asList(param.getDna()));
+            mutante.setAdn(param.getDna()); //Le asigno la matriz al algoritmo
+            isMutante = mutante.isMutant(mutante.getAdn());
+            entity.setMutante(isMutante);//Llamo a la función para saber si es mutante o no
+            if(isMutante) {
+                return ResponseEntity.status(HttpStatus.OK).body(servicio.save(entity));
+            }else{
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(servicio.save(entity));
+            }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("{\"error\":\"Error. No cumple con las condiciones\"}");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. Intente mas tarde\"}");
         }
     }
 

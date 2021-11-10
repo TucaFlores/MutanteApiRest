@@ -23,7 +23,6 @@ public class PersonaServiceImplTest {
     @Test
     void testCantMutante() throws Exception{
         Persona persona = new Persona();
-        persona.setNombre("Sebastian");
         persona.setAdn(Arrays.asList("AAAA","ATGC","AGCC","ATCG"));
 
         float cantMutante = 1;
@@ -35,7 +34,6 @@ public class PersonaServiceImplTest {
     @Test
     void testCantHumano() throws Exception{
         Persona persona = new Persona();
-        persona.setNombre("Sebastian");
         persona.setAdn(Arrays.asList("AGCT","CTGC","AGCC","ATCG"));
 
         float cantHumano = 1;
@@ -43,18 +41,6 @@ public class PersonaServiceImplTest {
         Mockito.when(personaRepository.cantMutantes()).thenReturn(cantHumano);
 
         Assertions.assertEquals(cantHumano,personaService.cantMutantes());
-    }
-    @Test
-    void savePersona() throws Exception{
-        Persona persona = new Persona();
-        persona.setNombre("Sebastian");
-        persona.setAdn(Arrays.asList("AGCTAGC","CTGCGCA","AGCCTAC","ATCGGCA"));
-
-        Mockito.when(personaRepository.save(persona)).thenReturn(persona);
-
-        Assertions.assertEquals(persona,personaService.save(persona));
-
-
     }
 
 }

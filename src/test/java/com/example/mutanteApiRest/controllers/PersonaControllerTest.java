@@ -28,11 +28,9 @@ public class PersonaControllerTest {
     @Test
     void stats() throws Exception{
         Persona persona1 = new Persona();
-        persona1.setNombre("Sebastian");
         persona1.setAdn(Arrays.asList("AAAAGCT","ATGCCGT","AGCCTGC","ATCGCGG"));
 
         Persona persona2 = new Persona();
-        persona2.setNombre("Andres");
         persona2.setAdn(Arrays.asList("AGCTCGG","CTGCTGC","AGCCTTC","ATCGCGT"));
 
         float cantMutante = 1;
