@@ -25,12 +25,8 @@ public class PersonaController extends BaseControllerImpl<Persona, PersonaServic
             Persona entity = new Persona();
             JsonDna param = gson.fromJson(entry.toString(), JsonDna.class);
             boolean isMutante;
-            if(!mutante.controlSize(param.getDna())){
-             return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Matriz no cuadrada \"}");
-            }
-            mutante.matriz(param.getDna());
-            if(!mutante.caracteres(mutante.getMatrizADN())){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error de Caracteres \"}");
+            if(!mutante.getControl().controlCarSize(param.getDna())){
+             return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Matriz no cuadrada o Caracteres no acpetados\"}");
             }
             entity.setAdn(Arrays.asList(param.getDna()));
             mutante.setAdn(param.getDna()); //Le asigno la matriz al algoritmo
