@@ -23,4 +23,4 @@ Se nos detecto un código distinto pero con un mismo búcle, por lo que se podí
 
 La solución que se le dió al primer problema, fue la reutilización. Al notar que es un matriz, al realizar la transpuesta, podemos usar el mismo código, tanto el `búcle` como las `condiciones`. Además se pudo optimizar el algoritmo de búsqueda al saltar varios líneas de código al usar mejor los condicionales.
 
-Por otro lado, la `@Query` fue optimizada en una sola linea, y además se cambia la operación que relizabamos en el controlador y paso a estar en el servicio.
+Por otro lado, la `@Query` fue optimizada en una sola linea.
