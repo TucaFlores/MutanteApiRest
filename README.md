@@ -16,4 +16,11 @@ Para ellos necesitamos iniciar el XAMPP e iniciar un servidor MySQL. Luego con M
 Una vez iniciado ambas cosas, procede a clonar el repositorio y ha abrirlo con Intellig IDE. Dentro del programa lo hace correr, con el XAMPP andando. Cuando los 3 programas estén funcionando, abrimos el Postman. Dentro de él crearemos una Request, una nueva tarea `Post` y en el URL colocaremos `http://localhost:9000/api/v1/personas/mutant`. Dentro del body colocamos, en lenguaje JSON, {"dna":[]} el vector con el ADN. Luego el programa les mostrará si hubo un error o si se guardo exitosamente. Además, mostrará si es mutante o no.
 
 # Post en Heroku
-Este proyecto esta deployado en Heroku con el siguiente URL: https://mutanteapirest.herokuapp.com/. Estuvo testeado con JMeter para poder medir las peticiones que el programa puede soportar. 
+Este proyecto esta deployado en [Heroku](https://mutanteapirest.herokuapp.com/). Estuvo testeado con JMeter para poder medir las peticiones que el programa puede soportar. 
+
+#### ERRORES Detectado en la Presentación
+Se nos detecto un código distinto pero con un mismo búcle, por lo que se podía reutilizar. Además, se nos aclaro que las `@Querys` podríamos haber simplifacado en una sola. 
+
+La solución que se le dió al primer problema, fue la reutilización. Al notar que es un matriz, al realizar la transpuesta, podemos usar el mismo código, tanto el `búcle` como las `condiciones`. Además se pudo optimizar el algoritmo de búsqueda al saltar varios líneas de código al usar mejor los condicionales.
+
+Por otro lado, la `@Query` fue optimizada en una sola linea, y además se cambia la operación que relizabamos en el controlador y paso a estar en el servicio.
