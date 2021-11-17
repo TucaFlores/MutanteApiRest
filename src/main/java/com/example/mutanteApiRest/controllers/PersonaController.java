@@ -41,17 +41,17 @@ public class PersonaController extends BaseControllerImpl<Persona, PersonaServic
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. Intente mas tarde\"}");
         }
     }
-
     @GetMapping("/stats")
     public ResponseEntity<?> estadisticas(){
         try {
-            float cantidadMutantes = servicio.cantMutantes();
-            float cantidadHumanos = servicio.cantHumanos();
+            float cantidadMutantes = servicio.obtenerCantidad(true);
+            float cantidadHumanos = servicio.obtenerCantidad(false);
             float promedio = cantidadMutantes /(cantidadMutantes + cantidadHumanos);
             return ResponseEntity.status(HttpStatus.OK).body("{\"count_mutant_dna\": \""+ cantidadMutantes + "\",\"count_human_dna\": \""+ cantidadHumanos +"\",\"ratio\": \""+ promedio +"\"}");
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error \": \""+ e.getMessage() +"\"}"));
         }
     }
+
 
 }

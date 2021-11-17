@@ -17,37 +17,21 @@ import java.util.Arrays;
 class PersonaRespositoryTest {
 
     @Autowired
-    private EntityManager entityManager;
-
-    @Autowired
     private PersonaRepository personaRepository;
 
     @Test
-    void testCantMutante(){
+    void testStats(){
         Persona persona = new Persona();
         persona.setAdn(Arrays.asList("AAAAGCT","ATGCCGT","AGCCTGC","ATCGCGG","AAAAGCT","AAAAGCT","AAAAGCT"));
         persona.setMutante(true);
 
         float cantMutante = 1;
 
-        entityManager.persist(persona);
-        entityManager.flush();
+        personaRepository.save(persona);
 
-        Assertions.assertEquals(cantMutante,personaRepository.cantMutantes());
 
-    }
-    @Test
-    void testCantHumano(){
-        Persona persona = new Persona();
-        persona.setAdn(Arrays.asList("AGCTCGG","CTGCTGC","AGCCTTC","ATCGCGT","AGTGGTC","TGGACGG","CAGGCTC"));
-        persona.setMutante(false);
-
-        float cantHumano = 1;
-
-        entityManager.persist(persona);
-        entityManager.flush();
-
-        Assertions.assertEquals(cantHumano,personaRepository.cantHumanos());
+        Assertions.assertEquals(cantMutante,personaRepository.obtenerCantidad(true));
 
     }
+
 }

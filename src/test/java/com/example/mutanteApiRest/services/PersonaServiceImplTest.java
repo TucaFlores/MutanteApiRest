@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.support.GenericGroovyXmlContextLoader;
 
 import java.util.Arrays;
 
@@ -21,26 +22,21 @@ public class PersonaServiceImplTest {
     private PersonaServiceImpl personaService;
 
     @Test
-    void testCantMutante() throws Exception{
+    void testStats() throws Exception{
         Persona persona = new Persona();
         persona.setAdn(Arrays.asList("AAAA","ATGC","AGCC","ATCG"));
+        persona.setMutante(true);
 
+        Persona persona1 = new Persona();
+        persona1.setAdn(Arrays.asList("ACTG","TCGG","AATT", "GGCC"));
+        persona1.setMutante(false);
         float cantMutante = 1;
-
-        Mockito.when(personaRepository.cantMutantes()).thenReturn(cantMutante);
-
-        Assertions.assertEquals(cantMutante,personaService.cantMutantes());
-    }
-    @Test
-    void testCantHumano() throws Exception{
-        Persona persona = new Persona();
-        persona.setAdn(Arrays.asList("AGCT","CTGC","AGCC","ATCG"));
-
         float cantHumano = 1;
 
-        Mockito.when(personaRepository.cantMutantes()).thenReturn(cantHumano);
+        Mockito.when(personaRepository.obtenerCantidad(true)).thenReturn(cantMutante);
+        Mockito.when(personaRepository.obtenerCantidad(false)).thenReturn(cantHumano);
 
-        Assertions.assertEquals(cantHumano,personaService.cantMutantes());
+        Assertions.assertEquals(cantMutante,personaService.obtenerCantidad(true));
+        Assertions.assertEquals(cantHumano,personaService.obtenerCantidad(false));
     }
-
 }

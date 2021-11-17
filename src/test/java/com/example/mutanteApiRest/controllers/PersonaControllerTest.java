@@ -36,8 +36,8 @@ public class PersonaControllerTest {
         float cantMutante = 1;
         float cantHumano = 1;
 
-        Mockito.when(personaService.cantHumanos()).thenReturn(cantHumano);
-        Mockito.when(personaService.cantMutantes()).thenReturn(cantMutante);
+        Mockito.when(personaService.obtenerCantidad(false)).thenReturn(cantHumano);
+        Mockito.when(personaService.obtenerCantidad(true)).thenReturn(cantMutante);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/personas/stats")
                 .contentType(MediaType.APPLICATION_JSON))

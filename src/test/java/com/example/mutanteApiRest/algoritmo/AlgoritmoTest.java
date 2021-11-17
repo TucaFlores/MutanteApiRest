@@ -8,25 +8,20 @@ public class AlgoritmoTest {
 
     @Test
     public void controlCarSize() {//Controlo caracteres y si la matriz es curdrada
-        int bandera = 0;
+        String[] adn = {"ATGCGA","TTTTCA","TTTGGT","AAAAGG","CCCCTA","TCACTG"};
+        String [][] matrizControl;
+        matrizControl=matriz(adn);
         boolean carecteres;
-        String[] adn = {"ATGCGA","CAGTGC","TTTGT","AGAAGG","CCCCTA","TCACTG"};
         for (int i = 0; i < adn.length; i++) {
-            if (adn.length == adn[i].length()) {
-                bandera = bandera + 1;
-                System.out.println(bandera);
+            if (adn.length != adn[i].length() || adn[i].length()<3) {
+                System.out.println("No cuadrado");//En caso de encontrar que no es igual la cantidad de filas que columnas, retorna falso
             }
         }
-        System.out.println(adn.length);
-        if (bandera != adn.length || bandera < 3) {//Control de coincidencia de misma cantidad de filas que de caracteres
-            System.out.println("La matriz no es cuadrada");
-        }
-        carecteres = caracteres(matriz(adn));//Llamo a la función para controlar los caracteres
+        carecteres = caracteres(matrizControl);//Llamo a la función para controlar los caracteres
         if (!carecteres) {
-            System.out.println("Error de caracteres");
-
+            System.out.println("Caracteres");//Verifico el resultado de la funcion
         }
-        System.out.println("No hubo errores");
+        System.out.println("No hubo errores");//Devuelve true, cuando cumple con ambas condiciones
     }
     public boolean caracteres(String[][] adn) {
         String a = "A";

@@ -18,19 +18,10 @@ public class PersonaServiceImpl extends BaseServiceImpl<Persona, Long> implement
         super(baseRepository);
     }
 
-    public float cantMutantes() throws Exception{
+    public float obtenerCantidad(boolean v) throws Exception{
         try {
-            float cantidadMutant = personaRepository.cantMutantes();
-            return cantidadMutant;
-        }catch (Exception e){
-            throw new Exception(e.getMessage());
-        }
-    }
-
-    public float cantHumanos() throws Exception{
-        try {
-            float cantidadHuman = personaRepository.cantHumanos();
-            return cantidadHuman;
+            float cantidad = this.personaRepository.obtenerCantidad(v);
+            return cantidad;
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }

@@ -1,6 +1,7 @@
 package com.example.mutanteApiRest.integration;
 
 import com.example.mutanteApiRest.MutanteApiApplication;
+import com.example.mutanteApiRest.algoritmo.Control;
 import com.example.mutanteApiRest.algoritmo.Matriz;
 import com.example.mutanteApiRest.entities.Persona;
 import com.example.mutanteApiRest.repositories.PersonaRepository;
@@ -36,6 +37,8 @@ public class PersonaControllerIntegration {
     void testStats() throws Exception{
         Persona persona = new Persona();
         Matriz mutante = new Matriz();
+        Control control = new Control();
+        mutante.setControl(control);
         persona.setAdn(Arrays.asList("ATGC", "AAAA", "AGGC", "ATGG"));
         mutante.setAdn(new String[]{"ATGC", "AAAA", "AGGC", "ATGG"});
         mutante.getControl().controlCarSize(mutante.getAdn());
@@ -44,6 +47,8 @@ public class PersonaControllerIntegration {
         personaRepository.save(persona);
         Persona persona1 = new Persona();
         Matriz mutante1 = new Matriz();
+        Control control1 = new Control();
+        mutante1.setControl(control);
         persona1.setAdn(Arrays.asList("TTGC", "AGAA", "AGGC", "ATGG"));
         mutante1.setAdn(new String[]{"TTGC", "AGAA", "AGGC", "ATGG"});
         mutante1.getControl().controlCarSize(mutante1.getAdn());
