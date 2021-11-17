@@ -1,7 +1,7 @@
 # MutanteApiRest
 Este es un Proyecto realizado por los alumnos Flores Sebastián y Pepi Martín para la materia Taller de Programación Avanzada. 4to Año de la carrera Ingeniería de Sistema de Información.
 
-Este proyecto consta de un desafío, que había que determinar con un vector con caracteres especiales, si la persona era mutante o no. Este desafío lo podemos encontrar como el "Desafío del Mercado Libre". Hay varias personas que lo han realizado, de distintas formas y hay foros y blog que explican brevemente algunos detalles que tuvieron en cuenta a la hora de realizar el desafío.
+Este proyecto consta de un desafío, que había que determinar con un vector con caracteres especiales, si la persona era mutante o no. Este desafío lo podemos encontrar como el "Desafío del Mercado Libre". Hay varias personas que lo han realizado, de distintas formas y hay foros y blog que explican brevemente algunos detalles que tuvieron en cuenta a la hora de realizar el desafío. Cabe aclarar que los Test realizados, no se encuentran en este repositorio.
 
 # Tecnologías
 - XAMPP 
